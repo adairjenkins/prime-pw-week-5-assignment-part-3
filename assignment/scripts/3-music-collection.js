@@ -72,7 +72,7 @@ function showCollection(array) {
   for (let i=0; i < array.length; i++) {
     console.log(`${array[i].title} by ${array[i].artist} published in ${array[i].yearPublished}:`);
 
-    if (typeof array[i].tracks !== 'undefined') {
+    if (typeof array[i].tracks !== 'undefined') { //confirms object has tracks property
       for (let j=0; j < array[i].tracks.length; j++) {
         console.log(`${j+1}. ${array[i].tracks[j].trackName}: ${array[i].tracks[j].duration}`);
       }
@@ -116,7 +116,7 @@ function search(searchObject) {
     return searchHits;
   }
 
-  return collection;
+  return collection;//returns original collection if searchObject does not have necesary properties
 }
 
 album0 = { artist: 'Ray Charles', yearPublished: 1957, tracks: {trackName: 'A Fool for You'}}
