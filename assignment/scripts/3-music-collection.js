@@ -99,13 +99,17 @@ console.log('Albums in collection by Lady Gaga:', findByArtist('Lady Gaga'));
 //------------------------------------------------------------------------------
 
 function search(searchObject) {
-  searchHits = [];
+  let searchHits = [];
 
-  if (('artist' in searchObject) && ('yearPublished' in searchObject) && ('tracks.trackName' in searchObject)) {
+  if (('artist' in searchObject) && ('yearPublished' in searchObject) && ('tracks' in searchObject)) { //confirms searchObejct has necessary properties; could be improved if I could figure out how to check for trackNames instead of tracks
     for (let i=0; i<collection.length; i++) {
+
+      let tracks_i = collection[i].tracks; //uncertain if this variable is necessary but was not able to make .some work without it
+
       if (searchObject.artist == collection[i].artist
           && searchObject.yearPublished == collection[i].yearPublished
-          && collection[i].tracks.includes(searchObject.tracks.trackName)) {
+          && tracks_i.some(tracks_i => tracks_i.trackName == searchObject.tracks.trackName)) {
+
         searchHits.push(searchObject);
       }
     }
@@ -115,15 +119,9 @@ function search(searchObject) {
   return collection;
 }
 
-album0 = { artist: 'Ray Charles', yearPublished: 1957}
+album0 = { artist: 'Ray Charles', yearPublished: 1957, tracks: {trackName: 'A Fool for You'}}
 album1 = { artist: 'Miles Davis', yearPublished: 1959, tracks: {trackName: 'All Blue'}}
 album2 = { title: 'Birth of the Cool', yearPublished: 1957}
-
-console.log(album1.tracks.trackName);
-console.log(collection[1].tracks.includes(album1.tracks.trackName));
-console.log(collection[1].tracks);
-console.log(album1.tracks.trackName);
-console.log(collection[1].tracks.????('All Blue'));
 
 console.log('Test search for no match:', search(album0));
 console.log('Test search for match:', search(album1));
