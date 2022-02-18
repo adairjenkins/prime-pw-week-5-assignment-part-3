@@ -108,7 +108,7 @@ function search(searchObject) {
 
       if (searchObject.artist == collection[i].artist
           && searchObject.yearPublished == collection[i].yearPublished
-          && tracks_i.some(tracks_i => tracks_i.trackName == searchObject.tracks.trackName)) {
+          && tracks_i.some(tracks_i => tracks_i.trackName == searchObject.tracks.trackName)) { //is there a simpler way to do this?
 
         searchHits.push(searchObject);
       }
