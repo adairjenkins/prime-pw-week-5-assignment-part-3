@@ -101,7 +101,7 @@ console.log('Albums in collection by Lady Gaga:', findByArtist('Lady Gaga'));
 function search(searchObject) {
   let searchHits = [];
 
-  if (('artist' in searchObject) && ('yearPublished' in searchObject) && ('tracks' in searchObject)) { //confirms searchObejct has necessary properties; could be improved if I could figure out how to check for trackNames instead of tracks
+  if ((searchObject != undefined) && ('artist' in searchObject) && ('yearPublished' in searchObject) && ('tracks' in searchObject)) { //confirms searchObejct has necessary properties; could be improved if I could figure out how to check for trackNames instead of tracks
     for (let i=0; i<collection.length; i++) {
 
       let tracks_i = collection[i].tracks; //uncertain if this variable is necessary but was not able to make .some work without it
@@ -125,4 +125,5 @@ album2 = { title: 'Birth of the Cool', yearPublished: 1957}
 
 console.log('Test search for no match:', search(album0));
 console.log('Test search for match:', search(album1));
-console.log('Test search for argument that does not meet criteria:', search(album2))
+console.log('Test search for argument that does not meet criteria:', search(album2));
+console.log('Test for no input:', search());
